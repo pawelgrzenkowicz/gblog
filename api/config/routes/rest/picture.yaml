@@ -1,0 +1,18 @@
+picture.add:
+    path: /pictures
+    controller: 'App\UI\Http\Rest\Controller\Picture\AddPictureController'
+    methods: [ POST ]
+
+picture.delete:
+    path: /pictures/{source}
+    controller: 'App\UI\Http\Rest\Controller\Picture\DeletePictureController'
+    methods: [ DELETE ]
+    requirements:
+        source: .+
+
+picture.get:
+    path: /pictures/{source}
+    controller: 'App\UI\Http\Rest\Controller\Picture\GetPictureController'
+    methods: [ GET ]
+    requirements:
+        source: .+

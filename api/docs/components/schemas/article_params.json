@@ -1,0 +1,73 @@
+{
+    "post": {
+        "name": "formData",
+        "in": "formData",
+        "schema": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "example": "random title",
+                    "required": true
+                },
+                "slug": {
+                    "type": "string",
+                    "example": "random-slug",
+                    "required": true
+                },
+                "contents[he]": {
+                    "type": "string",
+                    "example": "Jego text",
+                    "required": true
+                },
+                "contents[she]": {
+                    "type": "string",
+                    "example": "Jej text",
+                    "required": true
+                },
+                "ready[he]": {
+                    "type": "string",
+                    "example": "1",
+                    "required": true
+                },
+                "ready[she]": {
+                    "type": "string",
+                    "example": "0",
+                    "required": true
+                },
+                "createDate": {
+                    "type": "string",
+                    "example": "1994-06-30T17:40",
+                    "required": true
+                },
+                "publicationDate": {
+                    "type": "string",
+                    "example": "1994-06-30T17:40",
+                    "required": false
+                },
+                "removed": {
+                    "type": "string",
+                    "example": "0",
+                    "required": true
+                },
+                "mainPictureFile": {
+                    "type": "file",
+                    "example": "Main file for article.",
+                    "description": "Main file for article.",
+                    "required": true
+                },
+                "mainPicture[name]": {
+                    "type": "string",
+                    "example": "main-picture-name",
+                    "required": true
+                },
+                "mainPicture[alt]": {
+                    "type": "string",
+                    "example": "main picture alt",
+                    "required": true
+                }
+            }
+        },
+        "required": true
+    }
+}

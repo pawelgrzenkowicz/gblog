@@ -1,0 +1,32 @@
+user.api_login:
+    path: login
+
+user.api_refresh:
+    path: /security/refresh
+
+user.create:
+    path: users
+    controller: 'App\UI\Http\Rest\Controller\User\CreateUserController'
+    methods: [ POST ]
+
+user.delete:
+    path: users/{uuid}
+    controller: 'App\UI\Http\Rest\Controller\User\DeleteUserController'
+    methods: [ DELETE ]
+
+user.get_email:
+    path: users/{uuid}/email
+    controller: 'App\UI\Http\Rest\Controller\User\GetUserEmailController'
+    methods: [ GET ]
+
+user.edit_password:
+    path: users/password
+    controller: 'App\UI\Http\Rest\Controller\User\EditUserPasswordController'
+    methods: [ PUT ]
+
+#update:
+#    path: test
+#    controller: 'App\UI\Http\Rest\Controller\Test\UpdateTestController'
+#    methods: [ PUT ]
+#
+

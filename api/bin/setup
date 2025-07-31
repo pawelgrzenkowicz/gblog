@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+vendor/bin/codecept run tests/codeception/api/DeleteAllRecordsInDatabaseCest.php
+
+php bin/console app:create-admin-user
+
+php bin/console app:create-user --email=testcommand@test.test --nickname=TestCommand -pPassword123!
+
+
+php bin/console app:create-article -cLorem.txt -cLorem.txt --mainPictureName=command-dragon-ball-db1.jpg --mainPictureAlt=Dragon_alt -r1 -r1 -scommand-slug_jakis_tam -tcommandjakistytul --categories=rodzina,malzenstwo --views=0 --removed=0 --createDate=1994-06-30T17:40 --publicationDate=2004-06-30T17:40 --mainPictureFile=dragon-ball-db.jpg
+
+php bin/console app:create-article -cLorem.txt -cLorem.txt --mainPictureName=command2-dragon-ball-db2.jpg --mainPictureAlt=Dragon-2-alt -r1 -r1 -scommand-slug-jakis-tam-2 -tcommandjakistytul1 --categories=malzenstwo --views=0 --removed=0 --createDate=1995-06-30T17:40 --publicationDate=2005-06-30T17:40 --mainPictureFile=dragon-ball-db2.jpg
+php bin/console app:create-article -cLorem.txt -cLorem.txt --mainPictureName=command22-dragon-ball-db2.jpg --mainPictureAlt=Dragon-2-alt -r1 -r1 -scommand-slug-jakis-tam-22 -tcommandjakistytul12 --categories=malzenstwo --views=0 --removed=1 --createDate=1995-06-30T17:40 --publicationDate=2005-06-30T17:40 --mainPictureFile=dragon-ball-db2.jpg
+
+php bin/console app:create-article -cLorem.txt -cLorem.txt --mainPictureName=command3-dummy-img-400x400.jpg --mainPictureAlt=dummy -r1 -r1 -scommand-slug-jakis-tam-3 -tcommandjakistytul2 --categories=rodzina --views=0 --removed=0 --createDate=1996-06-30T17:40 --publicationDate=2006-06-30T17:40 --mainPictureFile=dummy-img-400x400.jpg
+php bin/console app:create-article -cLorem.txt -cLorem.txt --mainPictureName=command32-dummy-img-400x400.jpg --mainPictureAlt=dummy -r0 -r1 -scommand-slug-jakis-tam-32 -tcommandjakistytul22 --categories=rodzina --views=0 --removed=0 --createDate=1996-06-30T17:40 --publicationDate=2006-06-30T17:40 --mainPictureFile=dummy-img-400x400.jpg
+
+

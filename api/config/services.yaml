@@ -1,0 +1,186 @@
+imports:
+    - { resource: 'services/controller.yaml' }
+
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        bind:
+            $frontHost: "%env(FRONT_HOST)%"
+            $projectDir: '%kernel.project_dir%'
+
+    logger:
+        class: 'Symfony\Component\HttpKernel\Log\Logger'
+        arguments:
+            $output: '%kernel.logs_dir%/%kernel.environment%.log'
+
+    # Application
+
+    App\Application\:
+        resource: '%kernel.project_dir%/src/Application/'
+
+    App\Application\Application: '@App\Infrastructure\SymfonyApplication'
+
+    App\Application\Article\Command\Handler\:
+        resource: "%kernel.project_dir%/src/Application/Article/Command/Handler/*Handler.php"
+        tags:
+            - { name: 'messenger.message_handler', bus: 'messenger.bus.commands' }
+
+    App\Application\Article\Query\Handler\:
+        resource: "%kernel.project_dir%/src/Application/Article/Query/Handler/*Handler.php"
+        tags:
+            - { name: 'messenger.message_handler', bus: 'messenger.bus.queries' }
+
+    App\Application\Picture\Command\Handler\:
+        resource: "%kernel.project_dir%/src/Application/Picture/Command/Handler/*Handler.php"
+        tags:
+            - { name: 'messenger.message_handler', bus: 'messenger.bus.commands' }
+
+    App\Application\Picture\Query\Handler\:
+        resource: "%kernel.project_dir%/src/Application/Picture/Query/Handler/*Handler.php"
+        tags:
+            - { name: 'messenger.message_handler', bus: 'messenger.bus.queries' }
+
+    App\Application\User\Command\Handler\:
+        resource: "%kernel.project_dir%/src/Application/User/Command/Handler/*Handler.php"
+        tags:
+            - { name: 'messenger.message_handler', bus: 'messenger.bus.commands' }
+
+    App\Application\User\Query\Handler\:
+        resource: "%kernel.project_dir%/src/Application/User/Query/Handler/*Handler.php"
+        tags:
+            - { name: 'messenger.message_handler', bus: 'messenger.bus.queries' }
+
+    App\Application\Test\Command\Handler\:
+        resource: "%kernel.project_dir%/src/Application/Test/Command/Handler/*Handler.php"
+        tags:
+            - { name: 'messenger.message_handler', bus: 'messenger.bus.commands' }
+
+    App\Application\Test\Query\Handler\:
+        resource: "%kernel.project_dir%/src/Application/Test/Query/Handler/*Handler.php"
+        tags:
+            - { name: 'messenger.message_handler', bus: 'messenger.bus.queries' }
+
+    App\Application\Article\Reader\:
+        resource: '%kernel.project_dir%/src/Application/Article/Reader/*.php'
+
+    App\Application\Test\Reader\:
+        resource: '%kernel.project_dir%/src/Application/Test/Reader/*.php'
+
+    App\Application\User\Reader\:
+        resource: '%kernel.project_dir%/src/Application/User/Reader/*.php'
+
+    # Domain
+
+    App\Domain\Article\:
+        resource: '%kernel.project_dir%/src/Domain/Article/*.php'
+
+    App\Domain\Picture\:
+        resource: '%kernel.project_dir%/src/Domain/Picture/*.php'
+
+    App\Domain\Test\:
+        resource: '%kernel.project_dir%/src/Domain/Test/*.php'
+
+#    App\Domain\Test\TestRepositoryInterface: '@App\Infrastructure\Test\Repository\TestMongoRepository'
+    App\Domain\Test\TestRepositoryInterface: '@App\Infrastructure\Test\Repository\TestRepository'
+
+    App\Domain\User\:
+        resource: '%kernel.project_dir%/src/Domain/User/*.php'
+
+    # Infrastructure #
+
+    App\Infrastructure\:
+        resource: '%kernel.project_dir%/src/Infrastructure/'
+
+    App\Infrastructure\SymfonyApplication:
+        arguments:
+            $commands: '@application.bus.commands'
+            $queries: '@application.bus.queries'
+
+    application.bus.commands:
+        class: App\Infrastructure\Symfony\Messenger\SimpleMessageBus
+        arguments:
+            $bus: '@messenger.bus.commands'
+
+    application.bus.queries:
+        class: App\Infrastructure\Symfony\Messenger\SimpleMessageBus
+        arguments:
+            $bus: '@messenger.bus.queries'
+
+    App\Infrastructure\Symfony\EventListener\AuthenticationFailureListener:
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure }
+
+    App\Infrastructure\Symfony\EventListener\JWTDecodedListener:
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_decoded }
+
+    App\Infrastructure\Symfony\EventListener\AccessDeniedListener:
+        tags:
+            - { name: monolog.logger, channel: 'security' }
+
+    App\Infrastructure\Article\Reader\:
+        resource: '%kernel.project_dir%/src/Infrastructure/Article/Reader/*.php'
+        public: true
+
+    App\Infrastructure\Article\Repository\:
+        resource: '%kernel.project_dir%/src/Infrastructure/Article/Repository/*.php'
+        public: true
+
+    App\Infrastructure\Picture\Repository\:
+        resource: '%kernel.project_dir%/src/Infrastructure/Picture/Repository/*.php'
+        public: true
+
+    App\Infrastructure\Request\Repository\:
+        resource: '%kernel.project_dir%/src/Infrastructure/Request/Repository/*.php'
+        public: true
+
+    App\Infrastructure\Security\User\:
+        resource: '%kernel.project_dir%/src/Infrastructure/Security/User/*Repository.php'
+        public: true
+
+    App\Infrastructure\Test\Reader\:
+        resource: '%kernel.project_dir%/src/Infrastructure/Test/Reader/*.php'
+        public: true
+
+    App\Infrastructure\Test\Repository\:
+        resource: '%kernel.project_dir%/src/Infrastructure/Test/Repository/*.php'
+        public: true
+
+    App\Infrastructure\User\Reader\:
+        resource: '%kernel.project_dir%/src/Infrastructure/User/Reader/*.php'
+        public: true
+
+    App\Infrastructure\User\Repository\:
+        resource: '%kernel.project_dir%/src/Infrastructure/User/Repository/*.php'
+        public: true
+
+
+    directory:
+        class: App\Infrastructure\Filesystem\Directory
+        arguments:
+            $directory: '%env(resolve:PICTURE_STORAGE_DIR)%'
+
+    directory_cache:
+        class: App\Infrastructure\Filesystem\Directory
+        arguments:
+            $directory: '%env(resolve:PICTURE_STORAGE_CACHE_DIR)%'
+
+    App\Infrastructure\Picture\PictureFormatter:
+        arguments:
+            - '@App\Infrastructure\Picture\PictureStorage'
+            - '@App\Infrastructure\Picture\Resizer'
+            - '@directory_cache'
+
+    App\Infrastructure\Picture\PictureStorage:
+        arguments:
+            - '@directory'
+
+    # UI #
+
+    App\UI\Console\:
+        resource: '%kernel.project_dir%/src/UI/Console/'
+
+    # VENDOR #
+
+    Imagine\Imagick\Imagine: ~

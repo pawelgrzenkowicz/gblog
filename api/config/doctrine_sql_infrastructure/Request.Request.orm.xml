@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <entity name="App\Infrastructure\Request\Request" table="requests" >
+        <id name="uuid" type="uuid_type" />
+
+        <field name="ip" type="request_ip_type" />
+        <field name="route" type="request_route_type" />
+        <field name="date" type="create_date_type" />
+    </entity>
+
+</doctrine-mapping>

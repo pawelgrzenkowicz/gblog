@@ -1,0 +1,363 @@
+{
+    "paths": {
+        "/tests/{uuid}": {
+            "delete": {
+                "tags": ["test"],
+                "summary": "Delete test",
+                "description": "Delete test object from DB",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "example": "a931001e-56ff-4752-b3db-f7ed3544c385"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "invalid uuid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uuid": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "INVALID_UUID"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "TEST_NOT_FOUND"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["test"],
+                "summary": "Get test",
+                "description": "Get test object from DB.",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "example": "a931001e-56ff-4752-b3db-f7ed3544c385"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "uuid": "a931001e-56ff-4752-b3db-f7ed3544c385",
+                                        "name": "63f94225a7c7a",
+                                        "number": 12
+
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "TEST_NOT_FOUND"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["test"],
+                "summary": "Update test",
+                "description": "Update test object and save to entity.",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "example": "a931001e-56ff-4752-b3db-f7ed3544c385"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "random_name",
+                                    "required": true
+                                },
+                                "number": {
+                                    "type": "integer",
+                                    "example": 12,
+                                    "required": true
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "VALUE_CANNOT_BE_EMPTY"
+                                                    ]
+                                                },
+                                                "number": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "VALUE_IS_TOO_HIGH"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "examples" : {
+                                    "number is too low": {
+                                        "value": {
+                                            "errors": {
+                                                "name": [
+                                                    "VALUE_CANNOT_BE_EMPTY"
+                                                ],
+                                                "number": [
+                                                    "VALUE_IS_TOO_LOW"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "number is too high": {
+                                        "value": {
+                                            "errors": {
+                                                "name": [
+                                                    "VALUE_CANNOT_BE_EMPTY"
+                                                ],
+                                                "number": [
+                                                    "VALUE_IS_TOO_HIGH"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "TEST_NOT_FOUND"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tests": {
+            "get": {
+                "tags": ["test"],
+                "summary": "Get many tests",
+                "description": "Get tests objects from DB.",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "example":
+                                            [
+                                                {
+                                                    "uuid": "a931001e-56ff-4752-b3db-f7ed3544c385",
+                                                    "name": "63f94225a7c7a",
+                                                    "number": 12
+                                                },
+                                                {
+                                                    "uuid": "a931001e-56ff-4752-b3db-f7ed3544c380",
+                                                    "name": "cos",
+                                                    "number": 1
+                                                }
+                                            ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "TEST_NOT_FOUND"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["test"],
+                "summary": "Create test",
+                "description": "Crate test object and save to entity.",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "random_name",
+                                    "required": true
+                                },
+                                "number": {
+                                    "type": "integer",
+                                    "example": 12,
+                                    "required": true
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation."
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "VALUE_CANNOT_BE_EMPTY"
+                                                    ]
+                                                },
+                                                "number": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "VALUE_IS_TOO_HIGH"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "examples" : {
+                                    "number is too low": {
+                                        "value": {
+                                            "errors": {
+                                                "name": [
+                                                    "VALUE_CANNOT_BE_EMPTY"
+                                                ],
+                                                "number": [
+                                                    "VALUE_IS_TOO_LOW"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "number is too high": {
+                                        "value": {
+                                            "errors": {
+                                                "name": [
+                                                    "VALUE_CANNOT_BE_EMPTY"
+                                                ],
+                                                "number": [
+                                                    "VALUE_IS_TOO_HIGH"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

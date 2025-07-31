@@ -1,0 +1,37 @@
+https://safeimagekit.com/placeholder-images/placeholder-image-100x300 - image generator
+
+
+ ========== PYTANIA =============
+
+1.
+
+
+2. Paginacja się wyjebała
+3. Naprawa ArticleManager
+
+
+
+4.
+
+
+
+5. https://symfony.com/bundles/LexikJWTAuthenticationBundle/current/2-data-customization.html#events-jwt-decoded-validating-data-in-the-jwt-payload
+    - logowanie
+        Czy warto dodawać takie zabezpieczenie? Temat na później jak już będzie logowanie
+
+
+
+ ========== PYTANIA BE =============
+
+
+ ========== PYTANIA FRONT ==========
+1. web/src/router/index.ts:52 <- jak tutaj zrobić aby uniknąć DRY ?
+2.
+
+
+
+
+
+
+
+

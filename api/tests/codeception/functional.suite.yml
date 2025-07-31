@@ -1,0 +1,35 @@
+actor: FunctionalTester
+suite_namespace: App\Tests\Functional
+modules:
+    enabled:
+        - App\Tests\codeception\_support\Helper\Database:
+            mysql: "%MYSQL%"
+            mysql_database: "%MYSQL_DATABASE%"
+            mysql_user: "%MYSQL_USER%"
+            mysql_password: "%MYSQL_PASSWORD%"
+        - App\Tests\codeception\_support\Helper\Functional: ~
+#        - App\Tests\codeception\_support\Helper\MongoDatabase:
+#            database_url: "mongodb://%TEST_MONGODB_URL%/%MONGODB_DBNAME%"
+#            database: "%MONGODB_DBNAME%"
+#            user: "%TEST_MONGO_USER%"
+#            password: "%TEST_MONGO_PASSWORD%"
+        - Asserts: ~
+        - Db:
+            dsn: "%MYSQL%;dbname=%MYSQL_DATABASE%"
+            user: "%MYSQL_USER%"
+            password: "%MYSQL_PASSWORD%"
+            #            dump: 'tests/_data/dump.sql'
+            populate: false
+            cleanup: false
+#        - MongoDb:
+#            dsn: "mongodb://%TEST_MONGO_USER%:%TEST_MONGO_PASSWORD%@%TEST_MONGODB_URL%/%MONGODB_DBNAME%"
+#            populate: false
+#            cleanup: false
+        - REST:
+            url: http://localhost:81
+            depends: PhpBrowser
+            part: Json
+        - Symfony:
+            app_path: '/src'
+            environment: dev
+

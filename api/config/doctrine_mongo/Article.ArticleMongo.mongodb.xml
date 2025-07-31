@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
+                    http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
+
+    <document name="App\Domain\Article\ArticleMongo" collection="articles">
+        <id field-name="uuid" type="uuid_type" strategy="none" />
+
+        <field field-name="categories" name="categories" type="categories_type" nullable="true" />
+        <field field-name="contents" name="contents" type="article_contents_type" />
+        <field field-name="mainPicture" name="mainPicture" type="picture_type" />
+        <field field-name="ready" name="ready" type="article_ready_type" />
+        <field field-name="slug" name="slug" type="slug_type" />
+        <field field-name="title" name="title" type="title_type" />
+        <field field-name="views" name="views" type="views_type" />
+        <field field-name="removed" name="removed" type="bool" />
+        <field field-name="createDate" name="createDate" type="create_date_type" />
+        <field field-name="publicationDate" name="publicationDate" type="publication_date_type" nullable="true" />
+    </document>
+</doctrine-mongo-mapping>

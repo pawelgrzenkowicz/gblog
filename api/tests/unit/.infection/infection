@@ -1,0 +1,52 @@
+Escaped mutants:
+================
+
+1) /home/application/api/src/Domain/Shared/ValueObject/String/PasswordVO.php:41    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     private static function hash(string $password): string
+     {
+-        return password_hash($password, self::ALGORITHM, ['cost' => self::COST]);
++        return password_hash($password, self::ALGORITHM, []);
+     }
+ }
+
+
+Timed Out mutants:
+==================
+
+1) /home/application/api/src/Infrastructure/Symfony/EventListener/ExceptionListener.php:42    [M] Break_
+
+--- Original
++++ New
+@@ @@
+             if ($exception instanceof HttpException) {
+                 $message = $exception->getMessage();
+                 $code = $exception->getCode();
+-                break;
++                continue;
+             }
+             $exception = $exception->getPrevious();
+         }
+
+
+Skipped mutants:
+================
+
+1) /home/application/api/src/Domain/Shared/ValueObject/LogMessage.php:9    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+ 
+ class LogMessage
+ {
+-    public static function log(string $class, string $value): string
++    protected static function log(string $class, string $value): string
+     {
+         return sprintf('file: %s, value: %s', $class, $value);
+     }
+ }

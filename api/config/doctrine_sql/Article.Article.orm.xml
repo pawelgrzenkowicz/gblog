@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <entity name="App\Domain\Article\Article" table="articles" >
+        <id name="uuid" type="uuid_type" />
+
+        <field name="categories" type="categories_type" />
+        <field name="contentHe" type="content_type" />
+        <field name="contentShe" type="content_type" />
+
+        <one-to-one field="mainPicture" target-entity="App\Domain\Picture\Picture" fetch="EAGER" >
+            <cascade>
+                <cascade-remove />
+            </cascade>
+            <join-column name="main_picture_uuid" referenced-column-name="uuid" on-delete="CASCADE" />
+        </one-to-one>
+
+        <field name="readyHe" type="boolean" />
+        <field name="readyShe" type="boolean" />
+        <field name="slug" type="slug_type" unique="true" />
+        <field name="title" type="title_type" />
+        <field name="views" type="views_type" />
+        <field name="removed" type="boolean" />
+        <field name="createDate" type="create_date_type" />
+        <field name="publicationDate" type="publication_date_type" nullable="true" />
+    </entity>
+
+</doctrine-mapping>

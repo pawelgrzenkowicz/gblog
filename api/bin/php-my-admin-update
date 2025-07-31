@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+php bin/console d:s:u -f --env=dev
+php bin/console d:s:u -f --env=test

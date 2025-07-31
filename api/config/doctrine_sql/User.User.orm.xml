@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <entity name="App\Domain\User\User" table="users" >
+        <id name="uuid" type="uuid_type" />
+
+        <field name="email" type="email_type" />
+        <field name="nickname" type="nickname_type" unique="true" />
+<!--        <field name="nickname" type="nickname_type" index="true" unique="true" index-name="nickname" />-->
+        <field name="password" type="password_type" />
+        <field name="role" type="role_type" />
+        <field name="removed" type="boolean" />
+    </entity>
+
+</doctrine-mapping>

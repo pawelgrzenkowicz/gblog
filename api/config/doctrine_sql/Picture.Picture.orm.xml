@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <entity name="App\Domain\Picture\Picture" table="pictures" >
+        <id name="uuid" type="uuid_type" />
+
+        <field name="alt" type="picture_alt_type" />
+        <field name="extension" type="picture_extension_type" />
+        <field name="name" type="picture_name_type" />
+        <field name="source" type="picture_source_type" unique="true" />
+
+<!--        <one-to-one field="article" target-entity="App\Domain\Article\Article" mapped-by="mainPicture" />-->
+    </entity>
+
+</doctrine-mapping>

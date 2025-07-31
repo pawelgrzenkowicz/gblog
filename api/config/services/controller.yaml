@@ -1,0 +1,13 @@
+parameters:
+    frontHost: "%env(FRONT_HOST)%"
+
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+
+    App\UI\Http\Rest\Controller\:
+        resource: "%kernel.project_dir%/src/UI/Http/Rest/Controller/"
+        tags:
+            - { name: controller.service_arguments }
+

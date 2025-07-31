@@ -1,0 +1,15 @@
+test:
+    prefix: /api
+    resource: "routes/rest/test.yaml"
+
+article:
+    prefix: /api
+    resource: "routes/rest/article.yaml"
+
+picture:
+    prefix: /api
+    resource: "routes/rest/picture.yaml"
+
+user:
+    prefix: /api
+    resource: "routes/rest/user.yaml"

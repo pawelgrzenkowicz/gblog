@@ -1,0 +1,68 @@
+doctrine_mongodb:
+    types:
+#        uuid: Ramsey\Uuid\Doctrine\UuidType
+        uuid_type: App\Infrastructure\Database\Doctrine\Type\String\UuidType
+        # array #
+        categories_type: App\Infrastructure\Database\Doctrine\Type\Array\CategoriesType
+        # int #
+        natural_number_type: App\Infrastructure\Database\Doctrine\Type\Integer\NaturalNumberType
+        non_negative_type: App\Infrastructure\Database\Doctrine\Type\Integer\NonNegativeType
+        test_number_type: App\Infrastructure\Database\Doctrine\Type\Integer\TestNumberType
+        views_type: App\Infrastructure\Database\Doctrine\Type\Integer\ViewsType
+        # object #
+        article_ready_type: App\Infrastructure\Database\Doctrine\Type\Object\ArticleReadyType
+        article_contents_type: App\Infrastructure\Database\Doctrine\Type\Object\ArticleContentsType
+        picture_type: App\Infrastructure\Database\Doctrine\Type\Object\PictureType
+        # string #
+        create_date_type: App\Infrastructure\Database\Doctrine\Type\String\CreateDateType
+        email_type: App\Infrastructure\Database\Doctrine\Type\String\EmailType
+        nickname_type: App\Infrastructure\Database\Doctrine\Type\String\NicknameType
+        password_type: App\Infrastructure\Database\Doctrine\Type\String\PasswordType
+        picture_alt_type: App\Infrastructure\Database\Doctrine\Type\String\PictureAltType
+        picture_extension_type: App\Infrastructure\Database\Doctrine\Type\String\PictureExtensionType
+        publication_date_type: App\Infrastructure\Database\Doctrine\Type\String\PublicationDateType
+        request_date_type: App\Infrastructure\Database\Doctrine\Type\String\RequestDateType
+        request_ip_type: App\Infrastructure\Database\Doctrine\Type\String\RequestIPType
+        request_route_type: App\Infrastructure\Database\Doctrine\Type\String\RequestRouteType
+        route_type: App\Infrastructure\Database\Doctrine\Type\String\RouteType
+        role_type: App\Infrastructure\Database\Doctrine\Type\String\RoleType
+        slug_type: App\Infrastructure\Database\Doctrine\Type\String\SlugType
+        test_name_type: App\Infrastructure\Database\Doctrine\Type\String\TestNameType
+        title_type: App\Infrastructure\Database\Doctrine\Type\String\TitleType
+    auto_generate_proxy_classes: true
+    auto_generate_hydrator_classes: true
+    connections:
+        default:
+            server: '%env(MONGODB_URL)%/%env(MONGODB_DBNAME)%'
+    default_database: '%env(MONGODB_DBNAME)%'
+    document_managers:
+        default:
+            auto_mapping: true
+            mappings:
+                App:
+                    is_bundle: false
+                    dir: '%kernel.project_dir%/config/doctrine_mongo'
+                    prefix: 'App\Domain'
+                    alias: App
+                    type: xml
+                Infrastructure:
+                    is_bundle: false
+                    dir: '%kernel.project_dir%/config/doctrine_mongo_infrastructure'
+                    prefix: 'App\Infrastructure'
+                    alias: App
+                    type: xml
+when@prod:
+    doctrine_mongodb:
+        auto_generate_proxy_classes: false
+        auto_generate_hydrator_classes: false
+        document_managers:
+            default:
+                metadata_cache_driver:
+                    type: service
+                    id: doctrine_mongodb.system_cache_pool
+
+    framework:
+        cache:
+            pools:
+                doctrine_mongodb.system_cache_pool:
+                    adapter: cache.system

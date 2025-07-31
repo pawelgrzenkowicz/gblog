@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+DIR=$(dirname "$0")
+
+cd "$DIR" || exit
+
+printf "Clearing old public...  "
+rm -rf public
+printf "DONE!\n"
+
+printf "Building...  "
+npm run build >/dev/null 2>&1
+printf "DONE!\n"
+
+printf "Uploading...  "
+scp \
+    -o StrictHostKeyChecking=no \
+    -o PubkeyAuthentication=no \
+    -r \
+    ./public/* \
+    server394072@server394072.nazwa.pl:~/zmaczowani/web/public >/dev/null
+printf "DONE!\n"

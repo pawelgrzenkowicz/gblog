@@ -1,0 +1,26 @@
+{
+    "email": {
+        "type": "string",
+        "example": "coscos123@gmail.com35"
+    },
+    "nickname": {
+        "type": "string",
+        "example": "Pawel"
+    },
+    "name": {
+        "type": "string",
+        "example": "random_string"
+    },
+    "number": {
+        "type": "integer",
+        "example": 123
+    },
+    "password": {
+        "type": "string",
+        "example": "Coscos123!"
+    },
+    "uuid": {
+        "type": "string",
+        "example": "a931001e-56ff-4752-b3db-f7ed3544c385"
+    }
+}

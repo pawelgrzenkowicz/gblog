@@ -1,0 +1,23 @@
+###> symfony/framework-bundle ###
+.env.local
+.env.*.local
+var/
+vendor/
+###< symfony/framework-bundle ###
+
+###> images ###
+images/cache/*
+!images/cache/.htaccess
+###< images ###
+
+###> lexik/jwt-authentication-bundle ###
+config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+###> tests ###
+phpunit.xml
+tests/unit/.cache/.phpunit.result.cache
+tests/unit/.coverage
+tests/unit/infection
+tests/codeception/_output
+###< tests ###

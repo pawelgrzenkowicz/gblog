@@ -1,0 +1,315 @@
+{
+    "paths": {
+        "/users/{uuid}": {
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Delete user",
+                "description": "Delete test object from DB.",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "schema": {
+                            "$ref": "../components/schemas/common.json/#uuid"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uuid": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "INVALID_UUID"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "USER_NOT_FOUND"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Może kiedyś TODO",
+                "description": "????????",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "$ref": "../components/schemas/common.json/#email"
+                                },
+                                "nickname": {
+                                    "$ref": "../components/schemas/common.json/#nickname"
+                                },
+                                "password": {
+                                    "$ref": "../components/schemas/common.json/#password"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "email": "test@test.pl"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Create user",
+                "description": "Crate test object and save to entity.",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "$ref": "../components/schemas/common.json/#email"
+                                },
+                                "nickname": {
+                                    "$ref": "../components/schemas/common.json/#nickname"
+                                },
+                                "password": {
+                                    "$ref": "../components/schemas/common.json/#password"
+                                }
+                            }
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation."
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "email": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "INVALID_DATA"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "all invalid": {
+                                        "value": {
+                                            "errors": {
+                                                "email": [
+                                                    "VALUE_CANNOT_BE_EMPTY"
+                                                ],
+                                                "nickname": [
+                                                    "VALUE_TOO_SHORT"
+                                                ],
+                                                "password": [
+                                                    "VALUE_TOO_SHORT"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "too long": {
+                                        "value": {
+                                            "errors": {
+                                                "nickname": [
+                                                    "VALUE_TOO_LONG"
+                                                ],
+                                                "password": [
+                                                    "VALUE_TOO_LONG"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "passwords errors": {
+                                        "value": {
+                                            "errors": {
+                                                "email": [
+                                                    "INVALID_DATA"
+                                                ],
+                                                "password": [
+                                                    "VALUE_TOO_SHORT",
+                                                    "PASSWORD_NOT_CONTAIN_UPPERCASE_CHARACTER",
+                                                    "PASSWORD_NOT_CONTAIN_LOWERCASE_CHARACTER",
+                                                    "PASSWORD_NOT_CONTAIN_SPECIAL_CHARACTER",
+                                                    "PASSWORD_NOT_CONTAIN_NUMBER"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "email exist": {
+                                        "value": {
+                                            "type": "USER_EMAIL_ALREADY_EXIST"
+                                        }
+                                    },
+                                    "nickname exist": {
+                                        "value": {
+                                            "type": "USER_NICKNAME_ALREADY_EXIST"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{uuid}/email": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get user email",
+                "description": "Return user's email.",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "example": "a931001e-56ff-4752-b3db-f7ed3544c385"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "uuid": "a931001e-56ff-4752-b3db-f7ed3544c385",
+                                        "email": "test@test.pl"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uuid": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "INVALID_UUID"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "USER_NOT_FOUND"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

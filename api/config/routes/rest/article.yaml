@@ -1,0 +1,40 @@
+article.admin.create:
+    path: /admin/articles
+    controller: 'App\UI\Http\Rest\Controller\Article\CreateArticleController'
+    methods: [ POST ]
+
+article.admin.edit_by-uuid:
+    path: /admin/articles/{uuid}
+    controller: 'App\UI\Http\Rest\Controller\Article\UpdateArticleController'
+    methods: [ POST ]
+
+article.admin.get_by-uuid:
+    path: /admin/articles/uuid/{uuid}
+    controller: 'App\UI\Http\Rest\Controller\Article\GetAdminArticleByUuidController'
+    methods: [ GET ]
+
+article.admin.get_by-slug:
+    path: /admin/articles/{slug}
+    controller: 'App\UI\Http\Rest\Controller\Article\GetAdminArticleBySlugController'
+    methods: [ GET ]
+
+article.admin.delete:
+    path: /admin/articles/{uuid}
+    controller: 'App\UI\Http\Rest\Controller\Article\DeleteArticleController'
+    methods: [ DELETE ]
+
+article.admin.get:
+    path: /admin/articles
+    controller: 'App\UI\Http\Rest\Controller\Article\GetAdminArticlesController'
+    methods: [ GET ]
+
+article.get_by-slug:
+    path: /articles/{slug}
+    controller: 'App\UI\Http\Rest\Controller\Article\GetArticleBySlugController'
+    methods: [ GET ]
+
+article_visible.get:
+    path: /visible/articles
+    controller: 'App\UI\Http\Rest\Controller\Article\GetVisibleArticleController'
+    methods: [ GET ]
+

@@ -1,0 +1,19 @@
+[
+    {
+        "uuid": "61d445c0-6a30-4b52-885c-1b26bfaae578",
+        "contents": {
+            "he": "jego text",
+            "she": "jej text"
+        },
+        "mainPicture": {
+            "alt": "Dragon-alt",
+            "extension": "jpg",
+            "source": "some/path/command-dragon-ball-db.jpg"
+        },
+        "slug": "test-slug-1",
+        "title": "test-tytuł-1",
+        "views": 1,
+        "categories": "rodzina,malzenstwo",
+        "publicationDate": "2004-06-30T17:40:00+00:00"
+    }
+]

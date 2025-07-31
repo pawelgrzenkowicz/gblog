@@ -1,0 +1,27 @@
+[
+    {
+        "_id": "36aadce6-5154-4fdb-8cf8-e623450f3285",
+        "picture": {
+            "source": "article/content/2024/TEST-small.jpg",
+            "alt": "jakiś TEST alt",
+            "extension": "jpg"
+        }
+    },
+    {
+        "_id": "676d9ef0-98fc-4b5a-8643-3374b7ce6d6e",
+        "picture": {
+            "source": "article/content/2024/TEST.jpg",
+            "alt": "jakiś alt TEST",
+            "extension": "jpg"
+        }
+    },
+    {
+        "_id": "cd6014ca-5c3e-4a0d-a8ba-24b0d3be9c96",
+        "picture": {
+            "source": "some/path/command-dragon-ball-db.jpg",
+            "alt": "Dragon-alt",
+            "extension": "jpg"
+        }
+    }
+
+]

@@ -1,0 +1,47 @@
+@mixin for($min-width) {
+    @media only screen and (min-width: $min-width) { @content; }
+}
+
+/******/
+
+@mixin mobile-S() {
+    @include for(320px) {
+        @content;
+    };
+}
+
+@mixin mobile-M() {
+    @include for(375px) {
+        @content;
+    };
+}
+
+@mixin mobile-L() {
+    @include for(425px) {
+        @content;
+    };
+}
+
+@mixin tablet() {
+    @include for(768px) {
+        @content;
+    };
+}
+
+@mixin laptop() {
+    @include for(1024px) {
+        @content;
+    };
+}
+
+@mixin laptop-L() {
+    @include for(1440px) {
+        @content;
+    };
+}
+
+@mixin widescreen() {
+    @include for(2560px) {
+        @content;
+    };
+}

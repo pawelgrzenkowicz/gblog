@@ -1,0 +1,36 @@
+[
+    {
+        "_id": "64fc0c67-8c0f-4677-8e73-27320a2f2f59",
+        "email": "admin@admin.admin",
+        "nickname": "ADMIN",
+        "password": "$2y$13$nIuvwu2Ok3gGWiDI6nOWlO8wS/ogeVeMkC5uxRHFBF55gXLH2nWxe",
+        "removed": false,
+        "role": "ROLE_SUPER_ADMIN"
+    },
+    {
+        "_id": "531a514f-0bc3-4f8e-a398-cbf78ce6f5f5",
+        "email": "Test-1-ROLE_FREE_USER@gmail.com",
+        "nickname": "Test1",
+        "password": "$2y$13$R2GWckA645HkWYMSwv/3COPg19NdMmMPYwpfA2qmjitNE2A5XzPxy",
+        "removed": false,
+        "role": "ROLE_FREE_USER"
+    },
+    {
+        "_id": "d8e9c8a5-3a0a-4186-bd4c-4fbe5e040d59",
+        "email": "coscos123@gmail.com",
+        "nickname": "coscos123",
+        "password": "$2y$13$R2GWckA645HkWYMSwv/3COPg19NdMmMPYwpfA2qmjitNE2A5XzPxy",
+        "removed": false,
+        "role": "ROLE_FREE_USER"
+    },
+    {
+        "_id": "64fc0c67-8c0f-4677-8e73-27320a2f2f60",
+        "email": "coscos1234@gmail.com",
+        "nickname": "coscos1234",
+        "password": "$2y$13$R2GWckA645HkWYMSwv/3COPg19NdMmMPYwpfA2qmjitNE2A5XzPxy",
+        "removed": false,
+        "role": "ROLE_FREE_USER"
+    }
+]
+
+

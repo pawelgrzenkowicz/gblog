@@ -1,0 +1,78 @@
+{
+    "paths": {
+        "/articles": {
+            "post": {
+                "tags": [
+                    "article"
+                ],
+                "summary": "Create article",
+                "description": "Crate article object and save to entity.",
+                "parameters": [
+                    {
+                        "$ref": "../components/schemas/article_params.json/#post"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation."
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "VALUE_CANNOT_BE_EMPTY"
+                                                    ]
+                                                },
+                                                "number": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "VALUE_IS_TOO_HIGH"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "number is too low": {
+                                        "value": {
+                                            "errors": {
+                                                "name": [
+                                                    "VALUE_CANNOT_BE_EMPTY"
+                                                ],
+                                                "number": [
+                                                    "VALUE_IS_TOO_LOW"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "number is too high": {
+                                        "value": {
+                                            "errors": {
+                                                "name": [
+                                                    "VALUE_CANNOT_BE_EMPTY"
+                                                ],
+                                                "number": [
+                                                    "VALUE_IS_TOO_HIGH"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <entity name="App\Domain\User\RefreshToken" table="refresh_tokens" >
+<!--        <id name="id" type="string" />-->
+
+<!--        <field name="refreshToken" type="string" nullable="true" />-->
+<!--        <field name="username" type="string" nullable="true" />-->
+<!--        <field name="valid" type="date" nullable="true" />-->
+    </entity>
+
+<!--        <document name="App\Domain\User\RefreshToken" collection="refresh_tokens">
+        <id type="string" />
+
+        <field name="refreshToken" type="string" nullable="true" />
+        <field name="username" type="string" nullable="true" />
+        <field name="valid" type="date" nullable="true" />
+    </document>-->
+
+</doctrine-mapping>

@@ -1,0 +1,25 @@
+test.create:
+    path: tests
+    controller: 'App\UI\Http\Rest\Controller\Test\CreateTestController'
+    methods: [ POST ]
+
+test.delete:
+    path: tests/{uuid}
+    controller: 'App\UI\Http\Rest\Controller\Test\DeleteTestController'
+    methods: [ DELETE ]
+
+test.get:
+    path: tests
+    controller: 'App\UI\Http\Rest\Controller\Test\GetTestController'
+    methods: [ GET ]
+
+test.get_single:
+    path: tests/{uuid}
+    controller: 'App\UI\Http\Rest\Controller\Test\GetSingleTestController'
+    methods: [ GET ]
+
+test.update:
+    path: tests/{uuid}
+    controller: 'App\UI\Http\Rest\Controller\Test\UpdateTestController'
+    methods: [ PUT ]
+

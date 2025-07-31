@@ -1,0 +1,43 @@
+{
+    "openapi":"3.0.3",
+    "info":{
+        "description":"Sport",
+        "title":"Sport",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:12101/"
+        }
+    ],
+    "tags":[
+        {
+            "name": "test",
+            "description": "Test API - zostawić"
+        },
+        {
+            "name": "user",
+            "description": "User API - zostawić"
+        }
+    ],
+    "paths": {
+        "/tests/{uuid}": {
+            "$ref": "../paths/test.json#/paths/~1tests~1{uuid}"
+        },
+        "/tests": {
+            "$ref": "../paths/test.json#/paths/~1tests"
+        },
+        "/users/{uuid}": {
+            "$ref": "../paths/user.json#/paths/~1users~1{uuid}"
+        },
+        "/users": {
+            "$ref": "../paths/user.json#/paths/~1users"
+        },
+        "/users/{uuid}/email": {
+            "$ref": "../paths/user.json#/paths/~1users~1{uuid}~1email"
+        },
+        "/articles/": {
+            "$ref": "../paths/article.json#/paths/~1articles"
+        }
+    }
+}
